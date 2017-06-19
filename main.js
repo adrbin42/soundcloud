@@ -14,7 +14,7 @@
 
 let audioPlayer = document.querySelector(".music-player");
 let form = document.querySelector(".search-form");
-let results = document.querySelector(".results");
+let grid = document.querySelector(".grid");
 
 // 2. Create your `onSubmit` event for getting the user's search term
     // Create a submit button that takes the user input and
@@ -22,7 +22,6 @@ let results = document.querySelector(".results");
     //if you are using onsubmit property with a function will reload automatically
 
 form.onsubmit = function onSubmit() {
-  console.log(form.search.value);
   event.preventDefault();
   searchSoundCloud(form.search.value);
 };
@@ -44,28 +43,33 @@ function searchSoundCloud(song){
     for(let i=0;i<searchItems.length;i++){
       //t300x300 make artwork pics bigger?
       if(searchItems[i].artwork_url !== null){
-      songs += "<div class='grid-cell' id='artwork'>";
-      songs += "<img src=" + searchItems[i].artwork_url + "></div>";
-      songs += "<div class='grid-cell' id='songTitle'>";
-      songs += searchItems[i].title + "</div>";
-      songs += "<div class='grid-cell' id='artist'>";
-      songs += artist.toUpperCase() + "</div>";
+      songs += "<div class='grid-cell'>";
+      songs += "<img src=" + searchItems[i].artwork_url + " id='artwork'><br>";
+      songs += "<span id='songTitle'>";
+      songs += searchItems[i].title + "</span><br>";
+      songs += "<span id='artist'>";
+      songs += artist.toUpperCase() + "</span></div>";
       }else{
-        songs += "<div class='grid-cell' id='artwork'>";
-        songs += "<img src='noartwork.jpg' ></div>" ;
-        songs += "<div class='grid-cell' id='songTitle'>";
-        songs += searchItems[i].title + "</div>";
-        songs += "<div class='grid-cell' id='artist'>";
-        songs += artist.toUpperCase() + "</div>";
-      // uri += searchItems[i].user.uri;
+        songs += "<div class='grid-cell'>";
+        songs += "<img src='noartwork.jpg'  id='artwork' ></span>" ;
+        songs += "<span id='songTitle'>";
+        songs += searchItems[i].title + "</span>";
+        songs += "<span id='artist'>";
+        songs += artist.toUpperCase() + "</span></div>";
         }
       }
-      results.innerHTML = "<h3>Search results</h3>" + songs
-      // console.log(uri);
-      // return uri
+      grid.innerHTML = "<div class='searchText'><h3>Search results</h3></div>" + songs;
     });
   });
 
 }
 // 5. Create a way to listen for a click that will play the song in the audio play
     // Add an event listener that listens for a click event.
+
+    // Get the parent DIV, add click listener...
+  document.querySelector(".grid").addEventListener("click", function(event) {
+	// event.target was the clicked element
+  if (event.target && event.target.matches(".grid-cell")) {
+    console.log("Search result clicked!");
+	}
+});
