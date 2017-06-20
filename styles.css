@@ -10,6 +10,7 @@ header {
   display: flex;
   justify-content: center;
 }
+
 .player{
   height: 8vw;
   display: flex;
@@ -17,8 +18,8 @@ header {
   align-items: center;
 }
 
-.music-player {
-  width: 90vw;
+.music_player {
+  width: 85vw;
 }
 
 .search-form {
@@ -59,15 +60,20 @@ header {
 img {
   width: 15vw;
   height: 15vw;
+  margin: 0 3vw 0 3vw;
 }
 
-#songTitle {
+.songTitle {
+  padding: 3vw;
   font-size: 16px;
   font-family: inherit;
+  text-align: center;
 
 }
 
-#artist {
+.artist {
+  padding-top: 3vw;
   font-family: sans-serif;
   font-weight: bold;
+  text-align: center;
 }
